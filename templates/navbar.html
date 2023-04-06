@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SadTrip</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .navbar-brand {
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .navbar-nav > li > a {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .navbar-nav > li > a:hover {
+      background-color: #fff;
+      color: #222;
+    }
+    .dropdown-menu > li > a {
+      color: #222;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .dropdown-menu > li > a:hover {
+      background-color: #f7f7f7;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+
+      </button>
+      <a class="navbar-brand" href="{% url 'home'  %}">SadTrip</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'createPost' %}">Create</a></li>
+
+          {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+
+        <li><a href="{% url 'myPost' user.id  %}">My Post</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+</div>
+
+</body>
+</html>

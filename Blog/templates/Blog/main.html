@@ -1,0 +1,93 @@
+{% extends 'home.html'%}
+<h3>Pursue knowledge with enthusiasm</h3>
+{% block content %}
+<style>
+  .jumbotron {
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+
+    padding-right:50px
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .jumbotron h1 {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    text-shadow: 2px 2px 0 #ccc;
+    background-image: linear-gradient(to right, #F06401, #FFDD00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .jumbotron p {
+    font-size: 19px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-shadow: 1px 1px 0 #ccc;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .updated-time {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+    text-align: right;
+  }
+
+  .home-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding-left: 50px;
+
+  }
+  .topic-container {
+
+    text-align:center;
+    font-size: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  }
+</style>
+
+<div class="home-container">
+  <div class='topic-container '>
+
+    <h2>Recommended Topics</h2>
+    <hr>
+    {% for topic in topic %}
+    <div class="topic">
+      <p><a href="">{{ topic.Name }}</a></p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div>
+    {% for i in post %}
+      <div class="container">
+        <div class="jumbotron">
+          <p class="updated-time">updated {{ i.Updated|timesince:time }} ago</p>
+          <h1>{{ i.Title }}</h1>
+          <a href="{% url 'userPost' i.id  %}"><p>{{ i.Content|slice:":600" }}....</p></a>
+          <hr>
+          {{ i.Host }} {{ i.Created }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

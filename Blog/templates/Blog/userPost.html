@@ -1,0 +1,71 @@
+{% extends 'home.html'%}
+
+{% block content %}
+<style>
+  .jumbotron {
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 50px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    padding: 50px 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .jumbotron h1 {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    text-shadow: 2px 2px 0 #ccc;
+    background-image: linear-gradient(to right, #F06401, #FFDD00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .jumbotron p {
+      font-size: 22px;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      padding-left: 50px;
+      padding-right: 50px;
+      text-shadow: 1px 1px 0 #ccc;
+
+
+}
+a:hover {
+   text-decoration: none;
+ }
+
+
+
+  </style>
+<div>
+
+
+
+  <div class="container">
+
+  <div class="jumbotron">
+     {% if request.user == post.Host %}
+  <a href="{% url 'updatePost' post.id %}">  <input type="button" value="Update"></a>
+  <a href="{% url 'deletePost' post.id %}">  <input type="button" value="Delete"></a>
+  {% endif %}
+    <h1>{{post.Title}}</h1>
+    <p>{{ post.Content}}</p>
+<br>
+    {{post.Host}} {{post.Created}}
+  </div>
+
+
+
+</div>
+
+</div>
+
+{% endblock %}
