@@ -12,5 +12,6 @@ urlpatterns = [
     path('userPost/<str:pk>/',views.userPost,name='userPost'),
     path('updatePost/<str:pk>/',views.updatePost,name='updatePost'),
     path('deletePost/<str:pk>/',views.deletePost,name='deletePost'),
-    path('myPost/<str:pk>/',views.myPost,name='myPost')
+    path('myPost/<str:pk>/',views.myPost,name='myPost'),
+    path('register',views.registerPage,name='register')
 ]

@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate ,login,logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 def home(request):
     post = Post.objects.all()
@@ -16,6 +17,7 @@ def home(request):
     return render(request,'Blog/main.html',context)
 
 def loginPage(request):
+    page = 'login'
     if request.method=="POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -29,9 +31,25 @@ def loginPage(request):
             return redirect('home')
         else:
             messages.error(request, 'Username or Password Incorrect!')
-    context = {}
+    context = {'page':page}
     return render(request,'Blog/login_register.html',context)
 
+
+def registerPage(request):
+    form = UserCreationForm()
+    if request.method=="POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user  = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request,user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Something went wrong')
+
+    context = {'form':form}
+    return render(request,'Blog/login_register.html',context)
 
 def logoutPage(request):
     logout(request)
