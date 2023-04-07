@@ -9,7 +9,9 @@ from django.contrib.auth import authenticate ,login,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 def home(request):
-    post = Post.objects.all()
+    q = request.GET.get('q') if request.GET.get('q')!= None else ''
+
+    post = Post.objects.filter(Topic__Name__icontains=q)
     topic = Topic.objects.all()
 
     Updated = timezone.now()
