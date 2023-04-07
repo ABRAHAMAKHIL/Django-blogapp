@@ -1,6 +1,7 @@
 {% extends 'home.html'%}
 
 {% block content %}
+
 <style>
   .jumbotron {
     background-color: #f8f8f8;
@@ -8,7 +9,6 @@
     padding: 50px;
     margin-bottom: 30px;
     border-radius: 10px;
-
     padding: 50px 100px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
@@ -26,46 +26,167 @@
   }
 
   .jumbotron p {
-      font-size: 22px;
-      font-family: "Open Sans", sans-serif;
-      font-weight: 300;
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      padding-left: 50px;
-      padding-right: 50px;
-      text-shadow: 1px 1px 0 #ccc;
+    font-size: 22px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-shadow: 1px 1px 0 #ccc;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) {
+    .jumbotron {
+      padding: 30px;
+    }
+
+    .jumbotron h1 {
+      font-size: 36px;
+    }
+
+    .jumbotron p {
+      font-size: 18px;
+    }
+
+    .jumbotron input[type="button"] {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .jumbotron {
+      padding: 20px;
+    }
+
+    .jumbotron h1 {
+      font-size: 24px;
+    }
+
+    .jumbotron p {
+      font-size: 16px;
+    }
+
+    .jumbotron input[type="button"] {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  }
 
 
-}
-a:hover {
-   text-decoration: none;
- }
 
+    .comment-container {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
 
+    .comment-inside {
+      background-color: #eee;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 50px;
+    }
 
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .comment-form label {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .comment-form textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      resize: none;
+    }
+
+    .comment-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .comment-buttons button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .comment-buttons button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media screen and (max-width: 768px) {
+      .comment-inside {
+        padding: 30px;
+      }
+
+      .comment-form textarea {
+        min-height: 80px;
+      }
+    }
+    textarea {
+      height: auto;
+      min-height: 150px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
   </style>
-<div>
-
-
-
-  <div class="container">
-
-  <div class="jumbotron">
-     {% if request.user == post.Host %}
-  <a href="{% url 'updatePost' post.id %}">  <input type="button" value="Update"></a>
-  <a href="{% url 'deletePost' post.id %}">  <input type="button" value="Delete"></a>
-  {% endif %}
-    <h1>{{post.Title}}</h1>
-    <p>{{ post.Content}}</p>
-<br>
-    {{post.Host}} {{post.Created}}
+  <div>
+    <div class="container">
+      <div class="jumbotron">
+        {% if request.user == post.Host %}
+        <a href="{% url 'updatePost' post.id %}"><input type="button" value="Update"></a>
+        <a href="{% url 'deletePost' post.id %}"><input type="button" value="Delete"></a>
+        {% endif %}
+        <h1>{{post.Title}}</h1>
+        <p>{{ post.Content}}</p>
+        {{post.Host}} {{post.Created}}
+        <form method="POST" action="">
+          <div class="comment-container">
+            <div class="comment-inside">
+              <section style="background-color: #eee;">
+                <div class="container my-5 py-5">
+                  <div class="row d-flex justify-content-center">
+                    <label class="form-label" for="textAreaExample">Leave a comment</label>
+                    <textarea class="form-control" id="textAreaExample" style="background: #fff;"></textarea>
+                    <hr>
+                    <button type="button" class="btn btn-primary btn-sm">Post comment</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
 
 
-</div>
-
-</div>
 
 {% endblock %}

@@ -4,39 +4,73 @@
   <title>SadTrip</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-  #searchbox{
 
-    margin-top: 10px;
-    margin-left:1100px
+
+#searchbox{
+  margin-top: 10px;
+  margin-left: 1100px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.navbar-nav > li > a {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navbar-nav > li > a:hover {
+  background-color: #fff;
+  color: #222;
+}
+
+.dropdown-menu > li > a {
+  color: #222;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dropdown-menu > li > a:hover {
+  background-color: #f7f7f7;
+  color: #222;
+}
+
+
+/* Responsive styles */
+
+@media only screen and (max-width: 768px) {
+
+  /* Move searchbox to right */
+  #searchbox {
+    margin-left: 0;
+    margin-right: 20px;
   }
-    .navbar-brand {
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .navbar-nav > li > a {
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .navbar-nav > li > a:hover {
-      background-color: #fff;
-      color: #222;
-    }
-    .dropdown-menu > li > a {
-      color: #222;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .dropdown-menu > li > a:hover {
-      background-color: #f7f7f7;
-      color: #222;
-    }
+
+  /* Decrease font size of navbar items */
+  .navbar-brand,
+  .navbar-nav > li > a,
+  .dropdown-menu > li > a {
+    font-size: 16px;
+  }
+
+  /* Increase font weight of navbar items */
+  .navbar-brand,
+  .navbar-nav > li > a,
+  .dropdown-menu > li > a {
+    font-weight: bold;
+  }
+}
 
   </style>
+  
 </head>
 <body>
 
