@@ -155,6 +155,53 @@
       max-height: 300px;
       overflow-y: auto;
     }
+
+
+  .comment-section {
+  margin-bottom: 20px;
+  background-color: #e6f9ff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.comment-user {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.timeduration {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #999;
+}
+
+.comment-body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+@media screen and (max-width: 768px) {
+  .comment-section {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  .comment-user {
+    font-size: 16px;
+  }
+
+  .timeduration {
+    font-size: 12px;
+  }
+
+  .comment-body {
+    font-size: 14px;
+  }
+}
+
   </style>
   <div>
     <div class="container">
@@ -166,22 +213,101 @@
         <h1>{{post.Title}}</h1>
         <p>{{ post.Content}}</p>
         {{post.Host}} {{post.Created}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <form method="POST" action="">
+          {% csrf_token %}
           <div class="comment-container">
             <div class="comment-inside">
               <section style="background-color: #eee;">
                 <div class="container my-5 py-5">
                   <div class="row d-flex justify-content-center">
                     <label class="form-label" for="textAreaExample">Leave a comment</label>
-                    <textarea class="form-control" id="textAreaExample" style="background: #fff;"></textarea>
-                    <hr>
-                    <button type="button" class="btn btn-primary btn-sm">Post comment</button>
+                  <input type="text" name="body" placeholder="Write your Message here">
+
                   </div>
                 </div>
+                <br>
               </section>
+
+
+
+
+
+
+
+
+
+
+              {% for i in comment %}
+            <div class="comment-section">
+
+
+
+              <h5 class="comment-user">@{{i.user}}</h5>
+              <h5 class="timeduration">{{i.created|timesince}} ago</h5>
+              <p class="comment-body">
+              {{i.body}}
+              </p>
+
+
             </div>
+             {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   </div>

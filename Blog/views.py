@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Post , Topic
+from .models import Post , Topic , Message
 from .forms import PostForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -70,8 +70,18 @@ def newPost(request):
 
 def userPost(request,pk):
     post = Post.objects.get(id=pk)
+    comment = post.message_set.all().order_by('-created')
+    if request.method=="POST":
+        newcomments  = Message.objects.create(
+            user = request.user,
+            post  = post,
+            body = request.POST.get('body')
 
-    context = {'post':post}
+        )
+        return redirect('userPost',pk=post.id)
+
+
+    context = {'post':post,'comment':comment}
     return render(request,'Blog/userPost.html',context)
 
 
