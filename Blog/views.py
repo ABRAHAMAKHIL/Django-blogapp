@@ -121,3 +121,16 @@ def myPost(request,pk):
 
     context = {'post':post,'user':user}
     return render(request,'Blog/myPost.html',context)
+
+@login_required(login_url='login')
+def deleteComment(request,pk):
+        page="deleteComment"
+        delComment = Message.objects.get(id=pk)
+        if request.method == 'POST':
+            delComment.delete()
+            return redirect('home')
+
+
+
+        context = {'room':delComment,'page':page}
+        return render(request,'Blog/deletePost.html',context)

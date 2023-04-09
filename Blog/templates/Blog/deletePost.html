@@ -3,9 +3,16 @@
 <div>
 <form method="POST" action="">
     {% csrf_token %}
-    <h4>Do you want to delete ⬇️ ? <hr>Room :"{{room.Title}}" :->
-        <input type ="submit" value="DELETE"> </h4>
+    {% if page == 'deleteComment' %}
+    <h4>Do you want to delete ⬇️ ? <hr>Comment :"{{room.body}}" :->
+      <input type ="submit" value="DELETE"> </h4>
+      {% else %}
 
+    <h4>Do you want to delete ⬇️ ? <hr>Room :"{{room.Title}}" :->
+      <input type ="submit" value="DELETE"> </h4>
+
+
+        {% endif %}
 
 </form>
 </div>

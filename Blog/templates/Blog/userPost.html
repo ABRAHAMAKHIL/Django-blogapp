@@ -228,7 +228,7 @@
 
 
 
-
+  {% if request.user.is_authenticated %}
 
         <form method="POST" action="">
           {% csrf_token %}
@@ -245,6 +245,7 @@
                 <br>
               </section>
 
+{% endif %}
 
 
 
@@ -252,12 +253,13 @@
 
 
 
-
-
+<h2>Comments</h2>
               {% for i in comment %}
+
             <div class="comment-section">
-
-
+              {% if request.user == i.user %}
+          <button>  <a href="{% url 'deleteComment' i.id %}">Delete</a></button>
+          {% endif %}
 
               <h5 class="comment-user">@{{i.user}}</h5>
               <h5 class="timeduration">{{i.created|timesince}} ago</h5>
@@ -268,6 +270,8 @@
 
             </div>
              {% endfor %}
+
+
 
 
 
