@@ -71,6 +71,8 @@ def newPost(request):
 def userPost(request,pk):
     post = Post.objects.get(id=pk)
     comment = post.message_set.all().order_by('-created')
+    post_Topic = Topic.objects.get(pk = post.Topic.id)
+    print(post_Topic)
     if request.method=="POST":
         newcomments  = Message.objects.create(
             user = request.user,
@@ -81,7 +83,7 @@ def userPost(request,pk):
         return redirect('userPost',pk=post.id)
 
 
-    context = {'post':post,'comment':comment}
+    context = {'post':post,'comment':comment,'post_Topic':post_Topic}
     return render(request,'Blog/userPost.html',context)
 
 

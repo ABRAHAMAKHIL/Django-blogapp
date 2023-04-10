@@ -1,8 +1,11 @@
 {% extends 'home.html'%}
 
 {% block content %}
+<head>
 
+</head>
 <style>
+
   .jumbotron {
     background-color: #f8f8f8;
     color: #333;
@@ -207,12 +210,13 @@
     <div class="container">
       <div class="jumbotron">
         {% if request.user == post.Host %}
+
         <a href="{% url 'updatePost' post.id %}"><input type="button" value="Update"></a>
         <a href="{% url 'deletePost' post.id %}"><input type="button" value="Delete"></a>
         {% endif %}
         <h1>{{post.Title}}</h1>
         <p>{{ post.Content}}</p>
-        {{post.Host}} {{post.Created}}
+        {{post.Host}} {{post.Created}} <hr><button type="button" class="btn btn-primary btn-rounded">{{post_Topic.Name}}</button>
 
 
 
@@ -270,6 +274,8 @@
 
             </div>
              {% endfor %}
+
+
 
 
 
